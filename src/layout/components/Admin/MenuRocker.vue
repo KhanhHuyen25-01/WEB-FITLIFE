@@ -19,7 +19,7 @@
         <div class="menu-group-label text-uppercase text-muted fw-bold mb-2 ps-2" style="font-size: 0.65rem; letter-spacing: 0.05em;">MENU CHÍNH</div>
         <ul class="nav flex-column gap-1">
           <li class="nav-item" v-for="item in adminMenu" :key="item.name">
-            <router-link :to="item.link" class="nav-link py-2 px-3 rounded d-flex align-items-center justify-content-between text-decoration-none" :class="item.active ? 'active-menu bg-primary text-white' : 'text-muted-link'">
+            <router-link :to="item.link" class="nav-link py-2 px-3 rounded d-flex align-items-center justify-content-between text-decoration-none" :class="$route.path === item.link ? 'active-menu bg-primary text-white' : 'text-muted-link'">
               <span class="d-flex align-items-center gap-3">
                 <i :class="item.icon" style="width: 20px;"></i>
                 <span class="fw-medium">{{ item.name }}</span>
@@ -35,7 +35,7 @@
         <div class="menu-group-label text-uppercase text-muted fw-bold mb-2 ps-2" style="font-size: 0.65rem; letter-spacing: 0.05em;">HƯỚNG DẪN VIÊN</div>
         <ul class="nav flex-column gap-1">
           <li class="nav-item" v-for="item in ptMenu" :key="item.name">
-            <router-link :to="item.link" class="nav-link py-2 px-3 rounded d-flex align-items-center justify-content-between text-decoration-none" :class="item.active ? 'active-menu bg-success text-white' : 'text-muted-link'">
+            <router-link :to="item.link" class="nav-link py-2 px-3 rounded d-flex align-items-center justify-content-between text-decoration-none" :class="$route.path === item.link ? 'active-menu bg-success text-white' : 'text-muted-link'">
               <span class="d-flex align-items-center gap-3">
                 <i :class="item.icon" style="width: 20px;"></i>
                 <span class="fw-medium">{{ item.name }}</span>
@@ -51,7 +51,7 @@
         <div class="menu-group-label text-uppercase text-muted fw-bold mb-2 ps-2" style="font-size: 0.65rem; letter-spacing: 0.05em;">HỘI VIÊN</div>
         <ul class="nav flex-column gap-1">
           <li class="nav-item" v-for="item in clientMenu" :key="item.name">
-            <router-link :to="item.link" class="nav-link py-2 px-3 rounded d-flex align-items-center justify-content-between text-decoration-none" :class="item.active ? 'active-menu bg-info text-white' : 'text-muted-link'">
+            <router-link :to="item.link" class="nav-link py-2 px-3 rounded d-flex align-items-center justify-content-between text-decoration-none" :class="$route.path === item.link ? 'active-menu bg-info text-white' : 'text-muted-link'">
               <span class="d-flex align-items-center gap-3">
                 <i :class="item.icon" style="width: 20px;"></i>
                 <span class="fw-medium">{{ item.name }}</span>
@@ -164,10 +164,10 @@ export default {
       ],
       clientMenu: [
         { name: 'Dashboard Cá Nhân', icon: 'fa-solid fa-house-user', link: '/client', active: true, badge: true },
-        { name: 'Lịch Tập Của Tôi', icon: 'fa-solid fa-child-reaching', link: '/client', active: false, badge: false },
-        { name: 'Đặt Lịch PT', icon: 'fa-solid fa-user-plus', link: '/client', active: false, badge: false },
-        { name: 'Thực Đơn Ăn Uống', icon: 'fa-solid fa-utensils', link: '/client', active: false, badge: false },
-        { name: 'Lịch Sử Thanh Toán', icon: 'fa-solid fa-wallet', link: '/client', active: false, badge: false }
+        { name: 'Lịch Tập Của Tôi', icon: 'fa-solid fa-child-reaching', link: '/client/schedule', active: false, badge: false },
+        { name: 'Đặt Lịch PT', icon: 'fa-solid fa-user-plus', link: '/client/pt', active: false, badge: false },
+        { name: 'Thực Đơn Ăn Uống', icon: 'fa-solid fa-utensils', link: '/client/meals', active: false, badge: false },
+        { name: 'Lịch Sử Thanh Toán', icon: 'fa-solid fa-wallet', link: '/client/billing', active: false, badge: false }
       ]
     }
   }

@@ -11,7 +11,7 @@
           <i class="fa-solid fa-utensils"></i>
           <span class="fw-semibold">Nhật Ký Ăn Uống</span>
         </button>
-        <button class="btn btn-info text-white rounded-pill px-4 py-2 d-flex align-items-center gap-2 shadow-sm" style="background-color: #0dcaf0; border-color: #0dcaf0;">
+        <button class="btn btn-info text-white rounded-pill px-4 py-2 d-flex align-items-center gap-2 shadow-sm" style="background-color: #0dcaf0; border-color: #0dcaf0;" @click="$router.push('/client/schedule')">
           <i class="fa-solid fa-calendar-plus"></i>
           <span class="fw-semibold">Đặt Lịch Tập</span>
         </button>

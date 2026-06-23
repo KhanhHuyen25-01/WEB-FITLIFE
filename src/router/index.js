@@ -3,6 +3,7 @@ import LayoutAdmin from '../layout/wrapper/Admin/layoutAdmin.vue'
 import AdminDashboard from '../pages/admin/dashboard/index.vue'
 import PTDashboard from '../pages/pt/dashboard/index.vue'
 import ClientDashboard from '../pages/client/dashboard/index.vue'
+import ClientSchedule from '../pages/client/schedule/index.vue'
 
 const routes = [
   {
@@ -38,6 +39,26 @@ const routes = [
       {
         path: '',
         name: 'ClientDashboard',
+        component: ClientDashboard
+      },
+      {
+        path: 'schedule',
+        name: 'ClientSchedule',
+        component: ClientSchedule
+      },
+      {
+        path: 'pt',
+        name: 'ClientPT',
+        component: ClientDashboard
+      },
+      {
+        path: 'meals',
+        name: 'ClientMeals',
+        component: ClientDashboard
+      },
+      {
+        path: 'billing',
+        name: 'ClientBilling',
         component: ClientDashboard
       }
     ]
