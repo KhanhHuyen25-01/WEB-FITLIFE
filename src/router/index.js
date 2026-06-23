@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LayoutAdmin from '../layout/wrapper/Admin/layoutAdmin.vue'
-import AdminDashboard from '../pages/admin/index.vue'
-import PTDashboard from '../pages/pt/index.vue'
-import ClientDashboard from '../pages/client/index.vue'
+import AdminDashboard from '../pages/admin/dashboard/index.vue'
+import PTDashboard from '../pages/pt/dashboard/index.vue'
+import ClientDashboard from '../pages/client/dashboard/index.vue'
 
 const routes = [
   {
