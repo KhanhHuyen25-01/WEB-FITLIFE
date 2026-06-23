@@ -4,6 +4,7 @@ import AdminDashboard from '../pages/admin/dashboard/index.vue'
 import PTDashboard from '../pages/pt/dashboard/index.vue'
 import ClientDashboard from '../pages/client/dashboard/index.vue'
 import ClientSchedule from '../pages/client/schedule/index.vue'
+import ClientPT from '../pages/client/datlich/index.vue'
 
 const routes = [
   {
@@ -49,7 +50,7 @@ const routes = [
       {
         path: 'pt',
         name: 'ClientPT',
-        component: ClientDashboard
+        component: ClientPT
       },
       {
         path: 'meals',
