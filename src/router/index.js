@@ -5,6 +5,7 @@ import PTDashboard from '../pages/pt/dashboard/index.vue'
 import ClientDashboard from '../pages/client/dashboard/index.vue'
 import ClientSchedule from '../pages/client/schedule/index.vue'
 import ClientPT from '../pages/client/datlich/index.vue'
+import ClientMeals from '../pages/client/thucdon/index.vue'
 
 const routes = [
   {
@@ -55,7 +56,7 @@ const routes = [
       {
         path: 'meals',
         name: 'ClientMeals',
-        component: ClientDashboard
+        component: ClientMeals
       },
       {
         path: 'billing',
