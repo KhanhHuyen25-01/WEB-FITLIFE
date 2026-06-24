@@ -1,75 +1,85 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import LayoutAdmin from '../layout/wrapper/Admin/layoutAdmin.vue'
-import AdminDashboard from '../pages/admin/dashboard/index.vue'
-import PTDashboard from '../pages/pt/dashboard/index.vue'
-import ClientDashboard from '../pages/client/dashboard/index.vue'
-import ClientSchedule from '../pages/client/schedule/index.vue'
-import ClientPT from '../pages/client/datlich/index.vue'
-import ClientMeals from '../pages/client/thucdon/index.vue'
+import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
-    path: '/',
-    redirect: '/admin'
+    path: "/",
+    redirect: "/admin/dashboard",
   },
   {
-    path: '/admin',
-    component: LayoutAdmin,
-    children: [
-      {
-        path: '',
-        name: 'AdminDashboard',
-        component: AdminDashboard
-      }
-    ]
+    path: "/admin/dashboard",
+    component: () => import("../pages/admin/dashboard/index.vue"),
+    meta: {
+      layout: "admin",
+    },
   },
   {
-    path: '/pt',
-    component: LayoutAdmin,
-    children: [
-      {
-        path: '',
-        name: 'PTDashboard',
-        component: PTDashboard
-      }
-    ]
+    path: "/admin/hoadon",
+    component: () => import("../pages/admin/hoadon/index.vue"),
+    meta: {
+      layout: "admin",
+    },
   },
   {
-    path: '/client',
-    component: LayoutAdmin,
-    children: [
-      {
-        path: '',
-        name: 'ClientDashboard',
-        component: ClientDashboard
-      },
-      {
-        path: 'schedule',
-        name: 'ClientSchedule',
-        component: ClientSchedule
-      },
-      {
-        path: 'pt',
-        name: 'ClientPT',
-        component: ClientPT
-      },
-      {
-        path: 'meals',
-        name: 'ClientMeals',
-        component: ClientMeals
-      },
-      {
-        path: 'billing',
-        name: 'ClientBilling',
-        component: ClientDashboard
-      }
-    ]
-  }
-]
+    path: "/admin/hoivien",
+    component: () => import("../pages/admin/hoivien/index.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
+    path: "/admin/huanluyenvien",
+    component: () => import("../pages/admin/huanluyenvien/index.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
+    path: "/admin/lich",
+    component: () => import("../pages/admin/lich/index.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
+    path: "/admin/lichsuhoatdong",
+    component: () => import("../pages/admin/lichsuhoatdong/index.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
+    path: "/admin/solieu",
+    component: () => import("../pages/admin/solieu/index.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+  {
+    path: "/admin/profile",
+    component: () => import("../pages/admin/profile/index.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+   {
+    path: "/admin/caidat",
+    component: () => import("../pages/admin/caidat/index.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+    {
+    path: "/admin/profile",
+    component: () => import("../pages/admin/profile/index.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
-})
+  routes: routes,
+});
 
-export default router
+export default router;
