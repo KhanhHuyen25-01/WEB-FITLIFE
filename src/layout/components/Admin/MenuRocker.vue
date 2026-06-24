@@ -31,12 +31,15 @@
       <!-- Common Settings -->
       <div class="menu-group-label text-uppercase text-muted fw-bold mt-4 mb-2 ps-2" style="font-size: 0.65rem; letter-spacing: 0.05em;">CÀI ĐẶT HỆ THỐNG</div>
       <ul class="nav flex-column gap-1">
-        <li class="nav-item">
-          <a href="#" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-3 text-decoration-none text-muted-link">
-            <i class="fa-solid fa-gear" style="width: 20px;"></i>
-            <span class="fw-medium">Cài Đặt</span>
-          </a>
-        </li>
+       <li class="nav-item">
+  <router-link
+    to="/admin/caidat"
+    class="nav-link py-2 px-3 rounded d-flex align-items-center gap-3 text-decoration-none"
+    :class="$route.path === '/admin/caidat' ? 'active-menu bg-primary text-white' : 'text-muted-link'">
+    <i class="fa-solid fa-gear" style="width: 20px;"></i>
+    <span class="fw-medium">Cài Đặt</span>
+  </router-link>
+</li>
         <li class="nav-item">
           <a href="#" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-3 text-decoration-none text-muted-link text-danger-hover">
             <i class="fa-solid fa-right-from-bracket" style="width: 20px;"></i>
@@ -47,20 +50,20 @@
     </div>
 
     <!-- User Profile Footer Area -->
-    <div class="user-profile-section p-3 border-top border-dark bg-dark-deep mt-auto">
+    <button class="user-profile-section p-3 border-top border-dark bg-dark-deep mt-auto">
       <div class="d-flex align-items-center justify-content-between p-2 rounded" style="background-color: rgba(255,255,255,0.03);">
         <div class="d-flex align-items-center gap-2">
           <!-- Avatar Icon with initial -->
           <div class="avatar-circle rounded-circle d-flex align-items-center justify-content-center text-white fw-bold shadow-sm bg-primary" style="width: 40px; height: 40px; font-size: 0.95rem;">
             AM
           </div>
-          <div class="user-info overflow-hidden" style="max-width: 130px;">
+          <router-link to="/admin/profile" class="user-info overflow-hidden" style="max-width: 130px;">
             <div class="text-white fw-semibold text-truncate mb-0 fs-sm" style="font-size: 0.85rem;">Alex Morgan</div>
             <div class="text-muted text-truncate" style="font-size: 0.7rem;">Quản Trị Viên</div>
-          </div>
+          </router-link>
         </div>
       </div>
-    </div>
+    </button>
   </div>
 </template>
 
