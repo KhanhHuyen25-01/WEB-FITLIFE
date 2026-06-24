@@ -3,7 +3,14 @@ import { createRouter, createWebHistory } from "vue-router";
 const routes = [
   {
     path: "/",
-    redirect: "/admin/dashboard",
+    redirect: "/admin/login",
+  },
+  {
+    path: "/admin/login",
+    component: () => import("../pages/admin/login/index.vue"),
+    meta: {
+      layout: "blank",
+    },
   },
   {
     path: "/admin/dashboard",
