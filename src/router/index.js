@@ -82,6 +82,13 @@ const routes = [
       layout: "admin",
     },
   },
+    {
+    path: "/admin/goitap",
+    component: () => import("../pages/admin/goitap/index.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
 ];
 
 const router = createRouter({
