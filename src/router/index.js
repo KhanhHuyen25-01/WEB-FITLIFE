@@ -61,6 +61,27 @@ const routes = [
       layout: "admin",
     },
   },
+  {
+    path: "/admin/profile",
+    component: () => import("../pages/admin/profile/index.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+   {
+    path: "/admin/caidat",
+    component: () => import("../pages/admin/caidat/index.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
+    {
+    path: "/admin/profile",
+    component: () => import("../pages/admin/profile/index.vue"),
+    meta: {
+      layout: "admin",
+    },
+  },
 ];
 
 const router = createRouter({
