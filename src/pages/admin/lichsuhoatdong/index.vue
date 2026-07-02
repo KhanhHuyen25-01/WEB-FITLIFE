@@ -11,7 +11,7 @@
     <!-- Welcome Header Section -->
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
       <div>
-        <h2 class="fw-bold text-dark mb-1">Lịch Sử Hoạt Động 📜</h2>
+        <h2 class="fw-bold text-dark mb-1">Lịch Sử Hoạt Động </h2>
         <p class="text-secondary mb-0">Theo dõi toàn bộ nhật ký check-in, đăng ký lớp học và các thay đổi hệ thống.</p>
       </div>
       <div class="d-flex gap-2 mt-3 mt-md-0">
