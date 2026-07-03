@@ -76,6 +76,7 @@ export default {
         { name: 'Bảng Điều Khiển', icon: 'fa-solid fa-chart-line', link: '/admin/dashboard', active: true, badge: true },
         { name: 'Hội Viên', icon: 'fa-solid fa-users', link: '/admin/hoivien', active: false, badge: false },
         { name: 'Huấn Luyện Viên', icon: 'fa-solid fa-user-ninja', link: '/admin/huanluyenvien', active: false, badge: false },
+        { name: 'Gói Tập', icon: 'fa-solid fa-user-ninja', link: '/admin/goitap', active: false, badge: false },
         { name: 'Lịch Hoạt Động', icon: 'fa-solid fa-calendar-days', link: '/admin/lich', active: false, badge: false },
         { name: 'Số Liệu Phân Tích', icon: 'fa-solid fa-chart-pie', link: '/admin/solieu', active: false, badge: false },
         { name: 'Hóa Đơn & Phí', icon: 'fa-solid fa-credit-card', link: '/admin/hoadon', active: false, badge: false },
