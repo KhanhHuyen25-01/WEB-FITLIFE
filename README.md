@@ -10,7 +10,9 @@
 <div align="center">
 
 [![WEBSITE](https://img.shields.io/badge/🌐_WEBSITE-FITLIFE-blue?style=for-the-badge&logo=google-chrome&logoColor=white&labelColor=334155&color=2563eb)](http://localhost:5173) [![DOCS](https://img.shields.io/badge/📚_DOCS-GUIDE-lime?style=for-the-badge&logo=book&logoColor=black&labelColor=334155&color=9afe03)](README.md)
-
+<a href="https://hoduongquochuy278.github.io/FITLIFE-documents/" target="_blank">
+    <img src="https://img.shields.io/badge/Documentation-FITLIFE-blue?style=for-the-badge&logo=readthedocs" alt="FITLIFE Documentation">
+</a>
 </div>
 
 ---
