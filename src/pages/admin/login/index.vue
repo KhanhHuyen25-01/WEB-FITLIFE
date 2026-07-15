@@ -12,13 +12,13 @@
           <p class="subtitle text-secondary-custom">Ready to crush your goals?</p>
         </div>
 
-        <form @submit.prevent="handleLogin" class="d-flex flex-column gap-3">
+        <form @submit.prevent="DangNhap" class="d-flex flex-column gap-3">
           <!-- Username Input -->
           <div class="custom-input-group">
             <span class="input-icon">
               <i class="fa-solid fa-user"></i>
             </span>
-            <input type="text" class="custom-input" placeholder="Username" required v-model="loginForm.email" />
+            <input type="text" class="custom-input" placeholder="Username" required v-model="user.email" />
           </div>
 
           <!-- Password Input -->
@@ -26,7 +26,7 @@
             <span class="input-icon">
               <i class="fa-solid fa-lock"></i>
             </span>
-            <input :type="showPassword ? 'text' : 'password'" class="custom-input" placeholder="Password" required v-model="loginForm.password" />
+            <input :type="showPassword ? 'text' : 'password'" class="custom-input" placeholder="Password" required v-model="user.password" />
             <span class="eye-icon" @click="showPassword = !showPassword">
               <i :class="showPassword ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye'"></i>
             </span>
@@ -35,7 +35,7 @@
           <!-- Remember me & Forgot Password -->
           <div class="d-flex justify-content-between align-items-center mt-2 px-1">
             <label class="d-flex align-items-center gap-2 check-container text-secondary-custom" style="font-size: 0.85rem; cursor: pointer; user-select: none;">
-              <input type="checkbox" class="custom-checkbox" v-model="loginForm.remember" />
+              <input type="checkbox" class="custom-checkbox" v-model="user.remember" />
               <span>Remember me</span>
             </label>
             <a href="#" class="forgot-password-link text-decoration-none fw-semibold">Forgot Password?</a>
@@ -83,40 +83,44 @@
 </template>
 
 <script>
+import baseRequestAdmin from '../../../core/baseRequestAdmin';
+import { createToaster } from "@meforma/vue-toaster";
+const toaster = createToaster({ position: "top-right" });
 export default {
-  name: "AdminLogin",
-  data() {
-    return {
-      showPassword: false,
-      loading: false,
-      errorMessage: "",
-      loginForm: {
-        email: "",
-        password: "",
-        remember: false
-      }
-    };
-  },
-  methods: {
-    handleLogin() {
-      this.loading = true;
-      this.errorMessage = "";
-      
-      setTimeout(() => {
-        // Authenticate admin
-        if (this.loginForm.email === "admin" || this.loginForm.email === "admin@fitlife.com") {
-          this.loading = false;
-          this.$router.push("/admin/dashboard");
-        } else {
-          this.loading = false;
-          this.errorMessage = "Incorrect username or password.";
+    data() {
+        return {
+            user: {
+                email: '',
+                password: ''
+            },
+            showPassword: false,
+            loading: false,
+            errorMessage: "",
         }
-      }, 1200);
+    },
+    methods: {
+        DangNhap() {
+            baseRequestAdmin.post('admin/login', this.user)
+                .then((res) => {
+                    if (res.data.status) {
+                        toaster.success(res.data.message)
+                        this.user = {};
+                        localStorage.setItem('token_admin',res.data.token);
+                        this.$router.push('/admin/dashboard');
+                    } else {
+                        toaster.error(res.data.message);
+                    }
+                })
+                .catch((err) => {
+                    const listErr = err.response.data.errors;
+                    Object.values(listErr).forEach((error) => {
+                            toaster.error(error[0]);
+                    });
+                });
+        }
     }
-  }
 }
 </script>
-
 <style scoped>
 .login-page-container {
   min-height: 100vh;

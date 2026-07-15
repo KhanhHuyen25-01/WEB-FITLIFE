@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import checkAdmin from "./checkAdmin";
 
 const routes = [
   {
@@ -18,6 +19,8 @@ const routes = [
     meta: {
       layout: "admin",
     },
+    beforeEnter: checkAdmin,
+    
   },
   {
     path: "/admin/hoadon",
@@ -25,6 +28,7 @@ const routes = [
     meta: {
       layout: "admin",
     },
+    beforeEnter: checkAdmin,
   },
   {
     path: "/admin/hoivien",
@@ -32,6 +36,7 @@ const routes = [
     meta: {
       layout: "admin",
     },
+    beforeEnter: checkAdmin,
   },
   {
     path: "/admin/huanluyenvien",
@@ -39,6 +44,7 @@ const routes = [
     meta: {
       layout: "admin",
     },
+    beforeEnter: checkAdmin,
   },
   {
     path: "/admin/lich",
@@ -46,6 +52,7 @@ const routes = [
     meta: {
       layout: "admin",
     },
+    beforeEnter: checkAdmin,
   },
   {
     path: "/admin/lichsuhoatdong",
@@ -53,6 +60,7 @@ const routes = [
     meta: {
       layout: "admin",
     },
+    beforeEnter: checkAdmin,
   },
   {
     path: "/admin/solieu",
@@ -60,6 +68,7 @@ const routes = [
     meta: {
       layout: "admin",
     },
+    beforeEnter: checkAdmin,
   },
   {
     path: "/admin/profile",
@@ -67,6 +76,7 @@ const routes = [
     meta: {
       layout: "admin",
     },
+    beforeEnter: checkAdmin,
   },
    {
     path: "/admin/caidat",
@@ -74,6 +84,7 @@ const routes = [
     meta: {
       layout: "admin",
     },
+    beforeEnter: checkAdmin,
   },
     {
     path: "/admin/profile",
@@ -81,6 +92,7 @@ const routes = [
     meta: {
       layout: "admin",
     },
+    beforeEnter: checkAdmin,
   },
     {
     path: "/admin/goitap",
@@ -88,6 +100,7 @@ const routes = [
     meta: {
       layout: "admin",
     },
+    beforeEnter: checkAdmin,
   },
 ];
 
