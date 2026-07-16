@@ -41,7 +41,7 @@
   </router-link>
 </li>
         <li class="nav-item">
-          <a href="#" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-3 text-decoration-none text-muted-link text-danger-hover">
+          <a href="#" @click.prevent="logout" class="nav-link py-2 px-3 rounded d-flex align-items-center gap-3 text-decoration-none text-muted-link text-danger-hover">
             <i class="fa-solid fa-right-from-bracket" style="width: 20px;"></i>
             <span class="fw-medium">Đăng Xuất</span>
           </a>
@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import baseRequestAdmin from '../../../core/baseRequestAdmin';
 export default {
   name: "MenuRocker",
   data() {
@@ -83,9 +84,35 @@ export default {
         { name: 'Lịch Sử Hoạt Động', icon: 'fa-solid fa-file-invoice', link: '/admin/lichsuhoatdong', active: false, badge: false },
       ]
     }
+  },
+  methods: {
+    logout() {
+            baseRequestAdmin.post('admin/logout', {}, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token_admin"),
+                },
+            })
+                .then(res => {
+                    if (res.data.status) {
+                        localStorage.removeItem('token_admin');
+                        localStorage.removeItem('ho_ten_admin');
+                        
+                        this.$toast.success(res.data.message);
+                        this.$router.push('/admin/login');
+                    }
+                })
+                .catch((err) => {
+                    const listErr = err.response.data.errors;
+                    Object.values(listErr).forEach((error) => {
+                        this.$toast.error(error[0]);
+                    });
+                });
+        }
+
   }
 }
 </script>
+
 
 <style scoped>
 .sidebar-wrapper {

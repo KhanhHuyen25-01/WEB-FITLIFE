@@ -1,6 +1,7 @@
 <template>
   <div class="billing-page">
-    <div class="d-flex flex-column flex-xl-row justify-content-between align-items-start align-items-xl-center gap-3 mb-4">
+    <div
+      class="d-flex flex-column flex-xl-row justify-content-between align-items-start align-items-xl-center gap-3 mb-4">
       <div>
         <div class="d-flex align-items-center gap-2 mb-2">
           <span class="page-kicker">Tài chính</span>
@@ -12,11 +13,13 @@
       </div>
 
       <div class="d-flex flex-wrap gap-2">
-        <button class="btn btn-light border rounded-pill px-3 py-2 d-flex align-items-center gap-2 fw-semibold" @click="refreshData">
+        <button class="btn btn-light border rounded-pill px-3 py-2 d-flex align-items-center gap-2 fw-semibold"
+          @click="refreshData">
           <i class="fa-solid fa-rotate" :class="{ 'fa-spin': isRefreshing }"></i>
           Làm mới
         </button>
-        <button class="btn btn-outline-primary rounded-pill px-3 py-2 d-flex align-items-center gap-2 fw-semibold" @click="exportInvoices">
+        <button class="btn btn-outline-primary rounded-pill px-3 py-2 d-flex align-items-center gap-2 fw-semibold"
+          @click="exportInvoices">
           <i class="fa-solid fa-file-export"></i>
           Xuất báo cáo
         </button>
@@ -49,7 +52,8 @@
     <div class="row g-4 mb-4">
       <div class="col-xl-8">
         <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
-          <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3 mb-4">
+          <div
+            class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3 mb-4">
             <div>
               <span class="section-label">Dòng tiền tháng này</span>
               <h5 class="fw-bold text-dark mb-0 mt-1">Doanh thu theo tuần</h5>
@@ -79,7 +83,8 @@
               <span class="section-label">Nhắc thu phí</span>
               <h5 class="fw-bold text-dark mb-0 mt-1">Cần xử lý</h5>
             </div>
-            <span class="badge bg-danger-subtle text-danger border border-danger rounded-pill px-3 py-2">{{ overdueInvoices.length }} quá hạn</span>
+            <span class="badge bg-danger-subtle text-danger border border-danger rounded-pill px-3 py-2">{{
+              overdueInvoices.length }} quá hạn</span>
           </div>
 
           <div class="d-flex flex-column gap-3">
@@ -103,12 +108,14 @@
     <div class="row g-4">
       <div class="col-xl-8">
         <div class="card border-0 shadow-sm rounded-4 p-4">
-          <div class="d-flex flex-column flex-lg-row justify-content-between align-items-stretch align-items-lg-center gap-3 mb-4">
+          <div
+            class="d-flex flex-column flex-lg-row justify-content-between align-items-stretch align-items-lg-center gap-3 mb-4">
             <div class="input-group search-box">
               <span class="input-group-text bg-white border-end-0">
                 <i class="fa-solid fa-magnifying-glass text-secondary"></i>
               </span>
-              <input v-model="searchQuery" type="text" class="form-control border-start-0 shadow-none" placeholder="Tìm mã hóa đơn, hội viên, gói tập..." />
+              <input v-model="searchQuery" type="text" class="form-control border-start-0 shadow-none"
+                placeholder="Tìm mã hóa đơn, hội viên, gói tập..." />
             </div>
 
             <div class="d-flex flex-wrap gap-2">
@@ -224,18 +231,21 @@
 
           <div class="payment-method" v-for="method in paymentMethods" :key="method.name">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <span class="fw-semibold text-dark"><i class="fa-solid me-2" :class="method.icon"></i>{{ method.name }}</span>
+              <span class="fw-semibold text-dark"><i class="fa-solid me-2" :class="method.icon"></i>{{ method.name
+              }}</span>
               <span class="fw-bold text-secondary">{{ method.percent }}%</span>
             </div>
             <div class="progress rounded-pill payment-progress">
-              <div class="progress-bar rounded-pill" :class="method.barClass" :style="{ width: method.percent + '%' }"></div>
+              <div class="progress-bar rounded-pill" :class="method.barClass" :style="{ width: method.percent + '%' }">
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div v-if="selectedInvoice" class="modal-overlay d-flex align-items-center justify-content-center" @click.self="selectedInvoice = null">
+    <div v-if="selectedInvoice" class="modal-overlay d-flex align-items-center justify-content-center"
+      @click.self="selectedInvoice = null">
       <div class="card border-0 shadow-lg rounded-4 invoice-modal overflow-hidden">
         <div class="modal-header-custom d-flex justify-content-between align-items-center p-4">
           <div>
@@ -285,8 +295,10 @@
           </div>
 
           <div class="d-flex flex-wrap justify-content-end gap-2">
-            <button class="btn btn-light border rounded-pill px-4 fw-semibold" @click="selectedInvoice = null">Đóng</button>
-            <button class="btn btn-outline-primary rounded-pill px-4 fw-semibold" @click="printInvoice(selectedInvoice)">
+            <button class="btn btn-light border rounded-pill px-4 fw-semibold"
+              @click="selectedInvoice = null">Đóng</button>
+            <button class="btn btn-outline-primary rounded-pill px-4 fw-semibold"
+              @click="printInvoice(selectedInvoice)">
               <i class="fa-solid fa-print me-2"></i>In
             </button>
             <button class="btn btn-primary rounded-pill px-4 fw-semibold">
@@ -304,6 +316,8 @@
 </template>
 
 <script>
+import axios from "axios";
+const API = "http://192.168.1.228:8000/api/admin";
 export default {
   name: "HoaDonVaPhi",
   data() {
@@ -311,6 +325,14 @@ export default {
       searchQuery: "",
       statusFilter: "all",
       typeFilter: "all",
+      invoices: [],
+
+      summary: {
+        da_thu: 0,
+        cho_thu: 0,
+        qua_han: 0,
+        ti_le_thu_dung_han: 0
+      },
       selectedInvoice: null,
       isRefreshing: false,
       toastMessage: "",
@@ -332,14 +354,7 @@ export default {
         { name: "Thẻ ngân hàng", percent: 18, icon: "fa-credit-card", barClass: "bg-info" },
         { name: "Ví điện tử", percent: 7, icon: "fa-wallet", barClass: "bg-warning" }
       ],
-      invoices: [
-        { id: 1, code: "HD-2026-1092", member: "Trần Thị Bình", memberCode: "FL-1089", initials: "TB", avatarClass: "bg-success", plan: "Platinum 12 tháng", type: "membership", amount: 6800000, status: "paid", dueDate: "24/06/2026", createdAt: "Tạo lúc 08:15", method: "Chuyển khoản Vietcombank" },
-        { id: 2, code: "HD-2026-1091", member: "Nguyễn Văn An", memberCode: "FL-1024", initials: "NA", avatarClass: "bg-primary", plan: "PT 10 buổi", type: "pt", amount: 4200000, status: "pending", dueDate: "26/06/2026", createdAt: "Tạo lúc 07:50", method: "Chưa thanh toán" },
-        { id: 3, code: "HD-2026-1088", member: "Lê Văn Cường", memberCode: "FL-1150", initials: "LC", avatarClass: "bg-warning", plan: "Basic 1 tháng", type: "membership", amount: 650000, status: "overdue", dueDate: "20/06/2026", createdAt: "Tạo ngày 18/06", method: "Chưa thanh toán" },
-        { id: 4, code: "HD-2026-1085", member: "Hoàng Thị Dung", memberCode: "FL-1210", initials: "HD", avatarClass: "bg-purple", plan: "Khăn tắm & tủ đồ", type: "service", amount: 180000, status: "paid", dueDate: "23/06/2026", createdAt: "Tạo ngày 23/06", method: "Tiền mặt" },
-        { id: 5, code: "HD-2026-1080", member: "Phạm Văn Đạt", memberCode: "FL-1002", initials: "PD", avatarClass: "bg-info", plan: "Premium 6 tháng", type: "membership", amount: 3500000, status: "overdue", dueDate: "19/06/2026", createdAt: "Tạo ngày 16/06", method: "Chưa thanh toán" },
-        { id: 6, code: "HD-2026-1078", member: "Mai Anh Khoa", memberCode: "FL-1184", initials: "MK", avatarClass: "bg-danger", plan: "Gia hạn lớp Yoga", type: "service", amount: 450000, status: "refunded", dueDate: "18/06/2026", createdAt: "Tạo ngày 18/06", method: "Hoàn về thẻ ngân hàng" }
-      ]
+
     };
   },
   computed: {
@@ -367,14 +382,115 @@ export default {
       const overdue = this.overdueInvoices.reduce((sum, invoice) => sum + invoice.amount, 0);
 
       return [
-        { label: "Đã thu tháng này", value: this.formatCurrency(paid), note: "+12% so với tháng trước", badgeIcon: "fa-arrow-up", badgeClass: "bg-success-subtle text-success border border-success", icon: "fa-sack-dollar", iconClass: "bg-primary-subtle text-primary" },
-        { label: "Chờ thanh toán", value: this.formatCurrency(pending), note: "1 hóa đơn đang mở", badgeIcon: "fa-clock", badgeClass: "bg-warning-subtle text-warning border border-warning", icon: "fa-hourglass-half", iconClass: "bg-warning-subtle text-warning" },
-        { label: "Quá hạn", value: this.formatCurrency(overdue), note: `${this.overdueInvoices.length} hội viên cần nhắc`, badgeIcon: "fa-triangle-exclamation", badgeClass: "bg-danger-subtle text-danger border border-danger", icon: "fa-bell", iconClass: "bg-danger-subtle text-danger" },
-        { label: "Tỷ lệ thu đúng hạn", value: "82%", note: "Ổn định trong 7 ngày", badgeIcon: "fa-chart-line", badgeClass: "bg-info-subtle text-info border border-info", icon: "fa-gauge-high", iconClass: "bg-info-subtle text-info" }
+        {
+          label: "Đã thu tháng này",
+          value: this.formatCurrency(Number(this.summary.da_thu)),
+          note: "Đã thanh toán",
+          badgeIcon: "fa-arrow-up",
+          badgeClass:
+            "bg-success-subtle text-success border border-success",
+          icon: "fa-sack-dollar",
+          iconClass: "bg-primary-subtle text-primary"
+        },
+        {
+          label: "Chờ thanh toán",
+          value: this.formatCurrency(Number(this.summary.cho_thu)),
+          note: "Đang chờ thu",
+          badgeIcon: "fa-clock",
+          badgeClass:
+            "bg-warning-subtle text-warning border border-warning",
+          icon: "fa-hourglass-half",
+          iconClass: "bg-warning-subtle text-warning"
+        },
+        {
+          label: "Quá hạn",
+          value: this.summary.qua_han,
+          note: "Hóa đơn quá hạn",
+          badgeIcon: "fa-triangle-exclamation",
+          badgeClass:
+            "bg-danger-subtle text-danger border border-danger",
+          icon: "fa-bell",
+          iconClass: "bg-danger-subtle text-danger"
+        },
+        {
+          label: "Tỷ lệ thu đúng hạn",
+          value: this.summary.ti_le_thu_dung_han + "%",
+          note: "Tỷ lệ thu",
+          badgeIcon: "fa-chart-line",
+          badgeClass:
+            "bg-info-subtle text-info border border-info",
+          icon: "fa-gauge-high",
+          iconClass: "bg-info-subtle text-info"
+        }
       ];
     }
   },
   methods: {
+    async getInvoices() {
+      try {
+        const token = localStorage.getItem("token_admin");
+
+        const res = await axios.get(
+          "http://192.168.1.228:8000/api/admin/invoices",
+          {
+            params: {
+              keyword: this.searchQuery
+            },
+            headers: {
+              Authorization: `Bearer ${token}`,
+              Accept: "application/json",
+            }
+          }
+        );
+
+        this.invoices = res.data.data.map(item => ({
+          id: item.ma_hoa_don,
+          code: item.ma_hoa_don,
+          member: item.hoi_vien,
+          memberCode: "",
+          initials: item.hoi_vien
+            .split(" ")
+            .map(i => i[0])
+            .slice(-2)
+            .join("")
+            .toUpperCase(),
+          avatarClass: "bg-primary",
+          plan: item.goi_tap,
+          amount: Number(item.so_tien),
+          createdAt: item.ngay_tao,
+          dueDate: item.ngay_tao,
+          method: "",
+          type: "membership",
+          status:
+            item.trang_thai === "Đã thanh toán"
+              ? "paid"
+              : item.trang_thai === "Đã hủy"
+                ? "refunded"
+                : "pending",
+        }));
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async getSummary() {
+      try {
+        const token = localStorage.getItem("token_admin");
+
+        const res = await axios.get(
+          "http://192.168.1.228:8000/api/admin/sum/invoices",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              Accept: "application/json",
+            }
+          }
+        );
+
+        this.summary = res.data.data;
+      } catch (e) {
+        console.log(e);
+      }
+    },
     formatCurrency(value) {
       return new Intl.NumberFormat("vi-VN", {
         style: "currency",
@@ -422,13 +538,14 @@ export default {
     },
     refreshData() {
       this.isRefreshing = true;
-      setTimeout(() => {
+
+      Promise.all([
+        this.getInvoices(),
+        this.getSummary()
+      ]).finally(() => {
         this.isRefreshing = false;
-        this.searchQuery = "";
-        this.statusFilter = "all";
-        this.typeFilter = "all";
-        this.showToast("Dữ liệu hóa đơn đã được làm mới.");
-      }, 700);
+        this.showToast("Đã làm mới dữ liệu.");
+      });
     },
     showToast(message) {
       this.toastMessage = message;
@@ -436,7 +553,17 @@ export default {
         this.toastMessage = "";
       }, 2600);
     }
-  }
+  },
+  mounted() {
+    this.getInvoices();
+    this.getSummary();
+  },
+  watch: {
+    searchQuery() {
+      this.getInvoices();
+    }
+  },
+
 };
 </script>
 
@@ -608,7 +735,7 @@ export default {
   border-color: #bfdbfe;
 }
 
-.payment-method + .payment-method {
+.payment-method+.payment-method {
   margin-top: 18px;
 }
 
@@ -674,6 +801,7 @@ export default {
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
