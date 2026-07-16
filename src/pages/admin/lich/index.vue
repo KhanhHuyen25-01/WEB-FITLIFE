@@ -4,12 +4,15 @@
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
       <div>
         <h2 class="fw-bold text-dark mb-1">Quản Lý Lịch Tập & Lịch Dạy 📅</h2>
-        <p class="text-secondary mb-0">Hệ thống phê duyệt đổi lịch, đăng ký lịch làm việc của Huấn luyện viên và quản lý lớp học nhóm.</p>
+        <p class="text-secondary mb-0">Hệ thống phê duyệt đổi lịch, đăng ký lịch làm việc của Huấn luyện viên và quản lý
+          lớp học nhóm.</p>
       </div>
-      
+
       <!-- Quick Info Badges -->
       <div class="d-flex gap-2 mt-3 mt-md-0">
-        <span class="badge bg-warning-subtle text-warning border border-warning rounded-pill px-3 py-2 d-flex align-items-center gap-1.5 fw-semibold" style="font-size: 0.8rem;">
+        <span
+          class="badge bg-warning-subtle text-warning border border-warning rounded-pill px-3 py-2 d-flex align-items-center gap-1.5 fw-semibold"
+          style="font-size: 0.8rem;">
           <i class="fa-solid fa-clock-rotate-left"></i>
           <span>{{ pendingRequestsCount }} Yêu cầu chờ duyệt</span>
         </span>
@@ -20,20 +23,24 @@
     <div class="card border-0 shadow-sm rounded-4 p-2 bg-white mb-4">
       <ul class="nav nav-pills nav-fill gap-2">
         <li class="nav-item">
-          <button class="nav-link py-2.5 rounded-3 fw-bold d-flex align-items-center justify-content-center gap-2" :class="activeTab === 'timeline' ? 'active-tab' : 'text-secondary-link'" @click="activeTab = 'timeline'">
+          <button class="nav-link py-2.5 rounded-3 fw-bold d-flex align-items-center justify-content-center gap-2"
+            :class="activeTab === 'timeline' ? 'active-tab' : 'text-secondary-link'" @click="activeTab = 'timeline'">
             <i class="fa-regular fa-clock"></i>
             <span>Lịch Trình Hằng Ngày</span>
           </button>
         </li>
         <li class="nav-item">
-          <button class="nav-link py-2.5 rounded-3 fw-bold d-flex align-items-center justify-content-center gap-2" :class="activeTab === 'requests' ? 'active-tab' : 'text-secondary-link'" @click="activeTab = 'requests'">
+          <button class="nav-link py-2.5 rounded-3 fw-bold d-flex align-items-center justify-content-center gap-2"
+            :class="activeTab === 'requests' ? 'active-tab' : 'text-secondary-link'" @click="activeTab = 'requests'">
             <i class="fa-solid fa-code-pull-request"></i>
             <span>Duyệt Đổi Lịch</span>
-            <span v-if="pendingRequestsCount > 0" class="badge bg-danger rounded-circle ms-1 px-1.5 py-0.5" style="font-size: 0.65rem;">{{ pendingRequestsCount }}</span>
+            <span v-if="pendingRequestsCount > 0" class="badge bg-danger rounded-circle ms-1 px-1.5 py-0.5"
+              style="font-size: 0.65rem;">{{ pendingRequestsCount }}</span>
           </button>
         </li>
         <li class="nav-item">
-          <button class="nav-link py-2.5 rounded-3 fw-bold d-flex align-items-center justify-content-center gap-2" :class="activeTab === 'crud' ? 'active-tab' : 'text-secondary-link'" @click="activeTab = 'crud'">
+          <button class="nav-link py-2.5 rounded-3 fw-bold d-flex align-items-center justify-content-center gap-2"
+            :class="activeTab === 'crud' ? 'active-tab' : 'text-secondary-link'" @click="activeTab = 'crud'">
             <i class="fa-solid fa-calendar-check"></i>
             <span>Đăng Ký & Thiết Lập PT</span>
           </button>
@@ -43,10 +50,12 @@
 
     <!-- TAB 1: TIMELINE (DAILY SCHEDULE) -->
     <div v-if="activeTab === 'timeline'" class="card border-0 shadow-sm rounded-4 p-4 bg-white">
-      <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3 mb-4">
+      <div
+        class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3 mb-4">
         <div>
           <h5 class="fw-bold text-dark mb-0">Lịch Hoạt Động Phòng Tập</h5>
-          <small class="text-secondary">Theo dõi danh sách các lớp học nhóm đang diễn ra hôm nay. Bấm vào chỉ số **chỗ trống** để xem chi tiết học viên.</small>
+          <small class="text-secondary">Theo dõi danh sách các lớp học nhóm đang diễn ra hôm nay. Bấm vào chỉ số **chỗ
+            trống** để xem chi tiết học viên.</small>
         </div>
         <div class="d-flex flex-wrap gap-2">
           <select class="form-select border-light-custom" v-model="roomFilter" style="width: 160px;">
@@ -67,28 +76,37 @@
 
       <!-- Timeline List (Hours 7h - 21h) -->
       <div class="d-flex flex-column gap-3">
-        <div v-for="slot in hourlySchedule" :key="slot.time" class="time-row d-flex flex-column flex-md-row gap-4 p-3 rounded-4 align-items-start align-items-md-center" :class="slot.classInfo ? 'has-class border-start-custom' : 'no-class'">
-          
+        <div v-for="slot in hourlySchedule" :key="slot.time"
+          class="time-row d-flex flex-column flex-md-row gap-4 p-3 rounded-4 align-items-start align-items-md-center"
+          :class="slot.classInfo ? 'has-class border-start-custom' : 'no-class'">
+
           <div class="time-label fw-bold text-primary fs-5" style="width: 80px; min-width: 80px;">
             {{ slot.time }}
           </div>
 
           <div class="flex-grow-1 w-100">
             <!-- If slot has a class -->
-            <div v-if="slot.classInfo" class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2">
+            <div v-if="slot.classInfo"
+              class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2">
               <div>
                 <h6 class="mb-1 text-dark fw-bold" style="font-size: 1rem;">{{ slot.classInfo.name }}</h6>
-                <div class="d-flex flex-wrap gap-x-3 gap-y-1 align-items-center text-secondary" style="font-size: 0.8rem;">
-                  <span class="me-2"><i class="fa-solid fa-user-ninja me-1.5 opacity-70"></i>PT: {{ slot.classInfo.trainer }}</span>
-                  <span class="me-2"><i class="fa-solid fa-location-dot me-1.5 opacity-70"></i>{{ slot.classInfo.room }}</span>
+                <div class="d-flex flex-wrap gap-x-3 gap-y-1 align-items-center text-secondary"
+                  style="font-size: 0.8rem;">
+                  <span class="me-2"><i class="fa-solid fa-user-ninja me-1.5 opacity-70"></i>PT: {{
+                    slot.classInfo.trainer }}</span>
+                  <span class="me-2"><i class="fa-solid fa-location-dot me-1.5 opacity-70"></i>{{ slot.classInfo.room
+                  }}</span>
                 </div>
               </div>
               <div class="d-flex align-items-center gap-3 mt-2 mt-md-0">
-                <span class="badge rounded-pill px-3 py-1.5 fw-bold" :class="slot.classInfo.badgeClass" style="font-size: 0.7rem;">
+                <span class="badge rounded-pill px-3 py-1.5 fw-bold" :class="slot.classInfo.badgeClass"
+                  style="font-size: 0.7rem;">
                   {{ slot.classInfo.type }}
                 </span>
                 <!-- Interactive Booked Indicator -->
-                <span class="badge bg-light text-dark border rounded-pill px-3 py-1.5 fw-bold booking-clickable d-flex align-items-center gap-1.5" style="font-size: 0.8rem; cursor: pointer;" @click="openClassDetails(slot.classInfo)">
+                <span
+                  class="badge bg-light text-dark border rounded-pill px-3 py-1.5 fw-bold booking-clickable d-flex align-items-center gap-1.5"
+                  style="font-size: 0.8rem; cursor: pointer;" @click="openClassDetails(slot.classInfo)">
                   <i class="fa-solid fa-user-check text-primary"></i>
                   <span>{{ slot.classInfo.booked }}/{{ slot.classInfo.capacity }} chỗ</span>
                 </span>
@@ -97,7 +115,8 @@
 
             <!-- If slot is empty -->
             <div v-else class="text-muted d-flex justify-content-between align-items-center py-1">
-              <span style="font-size: 0.85rem; font-style: italic;"><i class="fa-regular fa-calendar-plus me-2"></i>Khung giờ trống — Không có lịch hoạt động</span>
+              <span style="font-size: 0.85rem; font-style: italic;"><i
+                  class="fa-regular fa-calendar-plus me-2"></i>Khung giờ trống — Không có lịch hoạt động</span>
             </div>
           </div>
         </div>
@@ -130,8 +149,14 @@
             <tr v-for="req in changeRequests" :key="req.id" class="hover-row">
               <td>
                 <div class="d-flex align-items-center gap-3">
-                  <div class="avatar-circle rounded-circle d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" :class="req.avatarColor">
-                    {{ req.initials }}
+                  <div
+                    class="avatar-circle rounded-circle overflow-hidden d-flex align-items-center justify-content-center"
+                    :class="!req.avatar ? req.avatarColor : ''">
+                    <img v-if="req.avatar" :src="req.avatar" class="w-100 h-100" style="object-fit: cover" />
+
+                    <span v-else class="text-white fw-bold">
+                      {{ req.initials }}
+                    </span>
                   </div>
                   <div>
                     <h6 class="mb-0 text-dark fw-bold" style="font-size: 0.9rem;">{{ req.name }}</h6>
@@ -140,8 +165,11 @@
                 </div>
               </td>
               <td>
-                <span class="badge rounded-pill px-2.5 py-1 fw-bold" :class="req.role === 'Trainer' ? 'bg-primary-subtle text-primary border border-primary' : 'bg-info-subtle text-info border border-info'" style="font-size: 0.75rem;">
-                  {{ req.role === 'Trainer' ? 'HLV (PT)' : 'Hội Viên' }}
+                <span class="badge rounded-pill px-2.5 py-1 fw-bold" :class="req.role === 'HLV (PT)'
+                  ? 'bg-primary-subtle text-primary border border-primary'
+                  : 'bg-info-subtle text-info border border-info'
+                  ">
+                  {{ req.role }}
                 </span>
               </td>
               <td>
@@ -153,16 +181,20 @@
               <td>
                 <div style="font-size: 0.85rem;">
                   <div class="fw-semibold text-primary">{{ req.newClass }}</div>
-                  <div class="text-secondary"><i class="fa-regular fa-clock me-1 text-primary"></i>{{ req.newTime }}</div>
+                  <div class="text-secondary"><i class="fa-regular fa-clock me-1 text-primary"></i>{{ req.newTime }}
+                  </div>
                 </div>
               </td>
               <td>
-                <span class="text-secondary" style="font-size: 0.85rem; max-width: 150px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" :title="req.reason">
+                <span class="text-secondary"
+                  style="font-size: 0.85rem; max-width: 150px; display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                  :title="req.reason">
                   {{ req.reason }}
                 </span>
               </td>
               <td>
-                <span class="badge rounded-pill px-2.5 py-1.5 fw-bold" :class="getStatusClass(req.status)" style="font-size: 0.75rem;">
+                <span class="badge rounded-pill px-2.5 py-1.5 fw-bold" :class="getStatusClass(req.status)"
+                  style="font-size: 0.75rem;">
                   {{ getStatusText(req.status) }}
                 </span>
               </td>
@@ -184,12 +216,15 @@
 
     <!-- TAB 3: REGISTER & CRUD TRAINERS SHIFTS -->
     <div v-if="activeTab === 'crud'" class="card border-0 shadow-sm rounded-4 p-4 bg-white">
-      <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
+      <div
+        class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
         <div>
           <h5 class="fw-bold text-dark mb-0">Đăng Ký Ca Trực & Quản Lý PT</h5>
-          <small class="text-secondary">Thiết lập thời gian đứng lớp, ca trực hỗ trợ và đăng ký lịch trống của Huấn luyện viên.</small>
+          <small class="text-secondary">Thiết lập thời gian đứng lớp, ca trực hỗ trợ và đăng ký lịch trống của Huấn
+            luyện viên.</small>
         </div>
-        <button class="btn btn-primary rounded-pill px-4 py-2 d-flex align-items-center gap-2 shadow-sm" @click="openAddModal">
+        <button class="btn btn-primary rounded-pill px-4 py-2 d-flex align-items-center gap-2 shadow-sm"
+          @click="openAddModal">
           <i class="fa-solid fa-plus"></i>
           <span class="fw-semibold">Đăng Ký Ca PT Mới</span>
         </button>
@@ -211,7 +246,9 @@
             <tr v-for="pt in trainerShifts" :key="pt.id" class="hover-row">
               <td>
                 <div class="d-flex align-items-center gap-3">
-                  <div class="avatar-circle rounded-circle d-flex align-items-center justify-content-center text-white fw-bold shadow-sm" :class="pt.avatarColor">
+                  <div
+                    class="avatar-circle rounded-circle d-flex align-items-center justify-content-center text-white fw-bold shadow-sm"
+                    :class="pt.avatarColor">
                     {{ pt.initials }}
                   </div>
                   <div>
@@ -233,16 +270,22 @@
                 <span class="text-secondary" style="font-size: 0.85rem;">{{ pt.room }}</span>
               </td>
               <td>
-                <span class="badge rounded-pill px-2.5 py-1.5 fw-bold" :class="pt.type === 'Lớp Nhóm' ? 'bg-primary-subtle text-primary border border-primary' : 'bg-success-subtle text-success border border-success'" style="font-size: 0.7rem;">
+                <span class="badge rounded-pill px-2.5 py-1.5 fw-bold"
+                  :class="pt.type === 'Lớp Nhóm' ? 'bg-primary-subtle text-primary border border-primary' : 'bg-success-subtle text-success border border-success'"
+                  style="font-size: 0.7rem;">
                   {{ pt.type }}
                 </span>
               </td>
               <td class="text-end">
                 <div class="d-flex justify-content-end gap-1.5">
-                  <button class="btn btn-sm btn-light border rounded-circle d-flex align-items-center justify-content-center p-0" style="width: 32px; height: 32px;" @click="openEditModal(pt)">
+                  <button
+                    class="btn btn-sm btn-light border rounded-circle d-flex align-items-center justify-content-center p-0"
+                    style="width: 32px; height: 32px;" @click="openEditModal(pt)">
                     <i class="fa-solid fa-pen-to-square text-secondary"></i>
                   </button>
-                  <button class="btn btn-sm btn-light border text-danger rounded-circle d-flex align-items-center justify-content-center p-0" style="width: 32px; height: 32px;" @click="deleteShift(pt.id)">
+                  <button
+                    class="btn btn-sm btn-light border text-danger rounded-circle d-flex align-items-center justify-content-center p-0"
+                    style="width: 32px; height: 32px;" @click="deleteShift(pt.id)">
                     <i class="fa-solid fa-trash-can"></i>
                   </button>
                 </div>
@@ -259,11 +302,12 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
           <div>
             <h5 class="fw-bold text-dark mb-0">Học Viên Đăng Ký Lớp</h5>
-            <small class="text-primary fw-semibold">{{ selectedClass.name }} - HLV {{ selectedClass.trainer }} ({{ selectedClass.time }})</small>
+            <small class="text-primary fw-semibold">{{ selectedClass.name }} - HLV {{ selectedClass.trainer }} ({{
+              selectedClass.time }})</small>
           </div>
           <button class="btn-close" @click="showClassDetailsModal = false"></button>
         </div>
-        
+
         <div class="table-responsive my-3" style="max-height: 350px;">
           <table class="table align-middle custom-table">
             <thead>
@@ -284,20 +328,25 @@
                   <span class="text-secondary" style="font-size: 0.85rem;">{{ student.phone }}</span>
                 </td>
                 <td>
-                  <span v-if="student.leaveReason" class="text-danger-emphasis bg-danger-subtle rounded px-2 py-1 d-inline-block" style="font-size: 0.8rem; max-width: 180px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;" :title="student.leaveReason">
+                  <span v-if="student.leaveReason"
+                    class="text-danger-emphasis bg-danger-subtle rounded px-2 py-1 d-inline-block"
+                    style="font-size: 0.8rem; max-width: 180px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
+                    :title="student.leaveReason">
                     {{ student.leaveReason }}
                   </span>
                   <span v-else class="text-muted" style="font-size: 0.8rem; font-style: italic;">Không có</span>
                 </td>
                 <td>
-                  <span class="badge rounded-pill px-2.5 py-1 fw-bold" :class="getStudentStatusClass(student.status)" style="font-size: 0.7rem;">
+                  <span class="badge rounded-pill px-2.5 py-1 fw-bold" :class="getStudentStatusClass(student.status)"
+                    style="font-size: 0.7rem;">
                     {{ getStudentStatusText(student.status) }}
                   </span>
                 </td>
                 <td class="text-end">
                   <!-- Toggle Switch for Student Leave Approval -->
                   <label class="switch-toggle" v-if="student.leaveReason">
-                    <input type="checkbox" :checked="student.status === 'leave_approved'" @change="toggleStudentLeave(student)" />
+                    <input type="checkbox" :checked="student.status === 'leave_approved'"
+                      @change="toggleStudentLeave(student)" />
                     <span class="slider-toggle">
                       <span class="toggle-text text-on">ON</span>
                       <span class="toggle-text text-off">OFF</span>
@@ -310,7 +359,8 @@
           </table>
         </div>
         <div class="d-flex justify-content-end mt-3">
-          <button type="button" class="btn btn-light rounded-pill px-4" @click="showClassDetailsModal = false">Đóng</button>
+          <button type="button" class="btn btn-light rounded-pill px-4"
+            @click="showClassDetailsModal = false">Đóng</button>
         </div>
       </div>
     </div>
@@ -367,10 +417,12 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "LichHoatDong",
   data() {
     return {
+      changeRequests: [],
       activeTab: "requests", // Defaults to approving schedule request tab
       roomFilter: "all",
       typeFilter: "all",
@@ -386,8 +438,8 @@ export default {
         type: "Lớp Nhóm"
       },
       hoursList: [
-        "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", 
-        "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", 
+        "07:00", "08:00", "09:00", "10:00", "11:00", "12:00",
+        "13:00", "14:00", "15:00", "16:00", "17:00", "18:00",
         "19:00", "20:00", "21:00"
       ],
       // Tab 1 Data: Schedules Timeline & registered students
@@ -452,51 +504,8 @@ export default {
           students: []
         }
       ],
-      // Tab 2 Data: Change requests (Members and Trainers)
-      changeRequests: [
-        {
-          id: 1,
-          name: "Nguyễn Văn Hùng",
-          phone: "0909 321 654",
-          role: "Member",
-          oldClass: "Yoga Trị Liệu",
-          oldTime: "Thứ 3 - 08:00",
-          newClass: "Yoga Trị Liệu",
-          newTime: "Thứ 5 - 18:00",
-          reason: "Trùng lịch họp công ty đột xuất",
-          status: "pending",
-          initials: "VH",
-          avatarColor: "bg-info"
-        },
-        {
-          id: 2,
-          name: "Priya Sharma",
-          phone: "0912 777 333",
-          role: "Trainer",
-          oldClass: "Lớp Yoga Cơ Bản",
-          oldTime: "Thứ Tư - 09:00",
-          newClass: "Lớp Yoga Cơ Bản (HLV Marcus thay thế)",
-          newTime: "Thứ Tư - 09:00",
-          reason: "Có lịch công tác ngoài thành phố",
-          status: "approved",
-          initials: "PS",
-          avatarColor: "bg-primary"
-        },
-        {
-          id: 3,
-          name: "Trần Minh Quân",
-          phone: "0901 234 567",
-          role: "Member",
-          oldClass: "Lớp HIIT Đốt Mỡ",
-          oldTime: "Thứ Bảy - 08:00",
-          newClass: "Lớp HIIT Đốt Mỡ",
-          newTime: "Thứ Bảy - 15:00",
-          reason: "Bận việc gia đình buổi sáng",
-          status: "pending",
-          initials: "MQ",
-          avatarColor: "bg-success"
-        }
-      ],
+
+
       // Tab 3 Data: Registered Trainer Shifts
       trainerShifts: [
         {
@@ -545,6 +554,61 @@ export default {
     }
   },
   methods: {
+    async getRescheduleRequests() {
+      try {
+        const token = localStorage.getItem("token_admin");
+
+        const res = await axios.get(
+          "http://192.168.1.228:8000/api/admin/reschedule",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              Accept: "application/json",
+            },
+          }
+        );
+
+        if (res.data.status) {
+          this.changeRequests = res.data.data.map(item => ({
+            id: item.id,
+            name: item.nguoi_gui,
+            phone: item.so_dien_thoai,
+            avatar: item.avatar,
+            role: item.vai_tro,
+
+            oldClass: item.lich_cu?.title || "-",
+            oldTime: item.lich_cu
+              ? `${item.lich_cu.date} ${item.lich_cu.start_time.slice(0, 5)} - ${item.lich_cu.end_time.slice(0, 5)}`
+              : "-",
+
+            newClass: item.lich_moi?.title || "-",
+            newTime: item.lich_moi
+              ? `${item.lich_moi.date} ${item.lich_moi.start_time.slice(0, 5)} - ${item.lich_moi.end_time.slice(0, 5)}`
+              : "-",
+
+            reason: item.ly_do,
+
+            status:
+              item.trang_thai === 0
+                ? "approved"
+                : item.trang_thai === 1
+                  ? "pending"
+                  : "rejected",
+
+            initials: item.nguoi_gui
+              .split(" ")
+              .slice(-2)
+              .map(n => n[0])
+              .join("")
+              .toUpperCase(),
+
+            avatarColor: "bg-primary",
+          }));
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    },
     // Open Class Members Details Modal
     openClassDetails(classInfo) {
       this.selectedClass = classInfo;
@@ -569,11 +633,29 @@ export default {
       return 'bg-primary-subtle text-primary border border-primary';
     },
     // Toggle change request status
-    toggleRequestStatus(req) {
-      if (req.status === 'approved') {
-        req.status = 'pending';
-      } else {
-        req.status = 'approved';
+    async toggleRequestStatus(req) {
+      try {
+        const token = localStorage.getItem("token_admin");
+
+        const newStatus = req.status === "approved" ? 2 : 0;
+
+        await axios.post(
+          "http://192.168.1.228:8000/api/admin/change/reschedule",
+          {
+            id: req.id,
+            status: newStatus,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              Accept: "application/json",
+            },
+          }
+        );
+
+        this.getRescheduleRequests();
+      } catch (err) {
+        console.log(err.response?.data || err);
       }
     },
     getStatusText(status) {
@@ -655,7 +737,10 @@ export default {
         this.trainerShifts = this.trainerShifts.filter(pt => pt.id !== id);
       }
     }
-  }
+  },
+  mounted() {
+    this.getRescheduleRequests();
+  },
 }
 </script>
 
@@ -665,61 +750,76 @@ export default {
   color: #ffffff !important;
   box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
 }
+
 .text-secondary-link {
   color: #64748b !important;
   background-color: transparent !important;
 }
+
 .text-secondary-link:hover {
   background-color: #f1f5f9 !important;
   color: #1e293b !important;
 }
+
 .booking-clickable {
   transition: all 0.2s ease;
 }
+
 .booking-clickable:hover {
   transform: translateY(-1px);
   background-color: #e2e8f0 !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
+
 .border-light-custom {
   border-color: #e2e8f0 !important;
 }
+
 .custom-table th {
   font-weight: 600;
   color: #475569;
   border-bottom: 2px solid #f1f5f9;
   padding-bottom: 12px;
 }
+
 .custom-table td {
   padding: 16px 8px;
   border-bottom: 1px solid #f8fafc;
 }
+
 .hover-row {
   transition: background-color 0.2s ease;
 }
+
 .hover-row:hover {
   background-color: #f8fafc;
 }
+
 .time-row {
   border: 1px solid #f1f5f9;
   transition: all 0.2s ease;
   background-color: #ffffff;
 }
+
 .time-row.has-class {
   border-left-width: 4px;
 }
+
 .time-row.has-class.border-start-custom {
   border-left-color: #3b82f6 !important;
 }
+
 .time-row.no-class {
   background-color: #f8fafc;
   border-style: dashed;
 }
+
 .avatar-circle {
-  width: 40px; 
-  height: 40px; 
+  width: 40px;
+  height: 40px;
   font-size: 0.85rem;
 }
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -730,9 +830,11 @@ export default {
   backdrop-filter: blur(4px);
   z-index: 2000;
 }
+
 .modal-box {
   animation: slideUp 0.3s ease-out;
 }
+
 .fs-xs {
   font-size: 0.75rem;
 }
@@ -744,11 +846,13 @@ export default {
   width: 65px;
   height: 30px;
 }
+
 .switch-toggle input {
   opacity: 0;
   width: 0;
   height: 0;
 }
+
 .slider-toggle {
   position: absolute;
   cursor: pointer;
@@ -764,6 +868,7 @@ export default {
   justify-content: space-between;
   padding: 0 8px;
 }
+
 .slider-toggle:before {
   position: absolute;
   content: "";
@@ -774,15 +879,19 @@ export default {
   background-color: white;
   transition: .3s;
   border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   z-index: 2;
 }
-.switch-toggle input:checked + .slider-toggle {
-  background-color: #4ade80; /* Lime green like user's request image */
+
+.switch-toggle input:checked+.slider-toggle {
+  background-color: #4ade80;
+  /* Lime green like user's request image */
 }
-.switch-toggle input:checked + .slider-toggle:before {
+
+.switch-toggle input:checked+.slider-toggle:before {
   transform: translateX(35px);
 }
+
 .toggle-text {
   font-size: 0.65rem;
   font-weight: bold;
@@ -790,19 +899,23 @@ export default {
   user-select: none;
   z-index: 1;
 }
+
 .text-on {
   display: none;
   margin-left: 2px;
 }
+
 .text-off {
   display: block;
   margin-left: auto;
   color: #64748b;
 }
-.switch-toggle input:checked + .slider-toggle .text-on {
+
+.switch-toggle input:checked+.slider-toggle .text-on {
   display: block;
 }
-.switch-toggle input:checked + .slider-toggle .text-off {
+
+.switch-toggle input:checked+.slider-toggle .text-off {
   display: none;
 }
 
@@ -811,6 +924,7 @@ export default {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
